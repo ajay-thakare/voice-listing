@@ -21,21 +21,29 @@ model User {
 }
 
 model Listing {
-  id           String        @id @default(cuid())
-  rawInput     String // the original voice transcript
-  language     String
-  title        String
-  description  String
-  hashtags     String[]
-  imagePrompts ImagePrompt[]
-  userId       String?
-  user         User?         @relation(fields: [userId], references: [id])
-  createdAt    DateTime      @default(now())
+  id            String        @id @default(cuid())
+  rawInput      String // the original voice transcript
+  language      String
+  title         String
+  description   String
+  hashtags      String[]
+  imagePrompts  ImagePrompt[]
+  productType   String?
+  priceAmount   Float?
+  priceCurrency String?
+  occasion      String?
+  userId        String?
+  user          User?         @relation(fields: [userId], references: [id])
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([userId])
+  @@index([createdAt])
 }
 
 model ImagePrompt {
   id        String  @id @default(cuid())
   prompt    String
-  listing   Listing @relation(fields: [listingId], references: [id])
+  listing   Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
   listingId String
 }
