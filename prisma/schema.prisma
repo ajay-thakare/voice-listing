@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  name      String?
+  listings  Listing[]
+  createdAt DateTime  @default(now())
+}
+
+model Listing {
+  id           String        @id @default(cuid())
+  rawInput     String // the original voice transcript
+  language     String
+  title        String
+  description  String
+  hashtags     String[]
+  imagePrompts ImagePrompt[]
+  userId       String?
+  user         User?         @relation(fields: [userId], references: [id])
+  createdAt    DateTime      @default(now())
+}
+
+model ImagePrompt {
+  id        String  @id @default(cuid())
+  prompt    String
+  listing   Listing @relation(fields: [listingId], references: [id])
+  listingId String
+}
