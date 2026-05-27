@@ -31,6 +31,8 @@ model Listing {
   productType   String?
   priceAmount   Float?
   priceCurrency String?
+  variantColor  String?
+  variantSize   String?
   occasion      String?
   userId        String?
   user          User?         @relation(fields: [userId], references: [id])

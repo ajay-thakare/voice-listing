@@ -1,15 +1,3 @@
-// {
-//     "title": "Elegant Red Silk Saree for Wedding Season",
-//     "description": "...",
-//     "hashtags": ["#SilkSaree", ...],
-//     "productType": "saree",
-//     "variant": { "color": "red", "size": null },
-//     "price": { "amount": 2500, "currency": "INR" },
-//     "occasion": "wedding",
-//     "language": "en",
-//     "imagePrompts": ["...", ...]
-// }
-
 export interface ProductVariant {
   color: string | null;
   size: string | null;
