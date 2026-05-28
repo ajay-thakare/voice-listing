@@ -1,4 +1,4 @@
-import { generateListing } from "@/lib/claude";
+import { generateListing } from "@/lib/groq";
 import { NextResponse } from "next/server";
 import z from "zod";
 
